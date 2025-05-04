@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink  } from 'react-router-dom'
 import { useSelector,useDispatch } from 'react-redux'
 import { LoginUser,logoutUser } from '../../Redux/userAsyncThunk'
@@ -46,6 +46,18 @@ const dispacth=useDispatch()
     }
   ]
 
+  const userOption=[
+    {
+
+    }
+  ]
+
+
+
+
+
+  const [show,setShow]=useState(false)
+
 
 
   return (
@@ -54,8 +66,47 @@ const dispacth=useDispatch()
 <div className="w-full bg-black text-white">
   <div className="max-w-7xl mx-auto px-4">
     <div className="flex flex-col md:flex-row justify-between items-center py-3">
-      {/* Logo or Site Title */}
-      <div className="text-lg font-bold">MySite</div>
+       <div className="flex items-center space-x-4">
+        
+  <div className="text-lg font-bold"
+  
+  
+  >MySite</div>
+  <div
+  className="relative inline-block"
+  onMouseEnter={() => setShow(true)}
+  onMouseLeave={() => setShow(false)}
+>
+
+  
+  {/* Avatar */}
+  {user.Authenticated && (
+    <div className="w-8 h-8 bg-gray-300 rounded-full cursor-pointer flex items-center justify-center text-sm font-medium text-black">
+      {user?.user?.username?.charAt(0).toUpperCase()}
+    </div>
+  )}
+
+  {/* Dropdown */}
+  {show && (
+    <div className="absolute left-0 mt-0 top-full w-40 bg-white border rounded-md shadow-lg z-10">
+  <ul className="py-1 text-sm text-gray-700">
+    <NavLink to="/profile" className="block px-4 py-2 hover:bg-gray-200 cursor-pointer">
+      Profile
+    </NavLink>
+    <NavLink to="/cart" className="block px-4 py-2 hover:bg-gray-200 cursor-pointer">
+      Cart
+    </NavLink>
+    <NavLink to="/logout" className="block px-4 py-2 hover:bg-gray-200 cursor-pointer">
+      Logout
+    </NavLink>
+  </ul>
+</div>
+  )}
+</div>
+</div>
+      
+
+      
 
       {/* Nav Links */}
       <div className="flex flex-col md:flex-row md:items-center w-full md:w-auto  md:gap-6 mt-2 md:mt-0">

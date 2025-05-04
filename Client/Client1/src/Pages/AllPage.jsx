@@ -5,15 +5,15 @@ import AddNewProductPage from "./AddNewProductPage";
 import AllProductsPage from "./AllProductsPage"
 import SignupPage from "./SignupPage";
 import RootPage from "./RootPage";
+import ProfilePage from "./ProfilePage";
+import ChangePassPage from "./changePassPage";
 
 
 
 
 
 
-
-
-export {HomePage,LoginPage,AboutPage,RootPage,AddNewProductPage,AllProductsPage,SignupPage}
+export {HomePage,LoginPage,AboutPage,RootPage,AddNewProductPage,AllProductsPage,SignupPage,ProfilePage,ChangePassPage}
 
 
 

@@ -19,8 +19,9 @@ export const LoginUser=createAsyncThunk('currentUser/login',async({email,passwor
 
 export const getCurrentUser=createAsyncThunk('currentUser/getCurrentuser',async(_,{rejectWithValue})=>{
     try {
-                 //  await refreshTokenAPI()
+                 //
         const user=await getCurrentUserAPI()
+        console.log(user)
         if(!user)
         {
            return rejectWithValue('user not found , please login again')

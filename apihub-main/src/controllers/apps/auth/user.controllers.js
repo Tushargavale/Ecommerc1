@@ -465,11 +465,13 @@ const handleSocialLogin = asyncHandler(async (req, res) => {
 
 const updateUserAvatar = asyncHandler(async (req, res) => {
   // Check if user has uploaded an avatar
+  console.log(req.file)
   if (!req.file?.filename) {
     throw new ApiError(400, "Avatar image is required");
   }
 
   // get avatar file system url and local path
+  console.log('AVATAR IAMAGE')
   const avatarUrl = getStaticFilePath(req, req.file?.filename);
   const avatarLocalPath = getLocalPath(req.file?.filename);
 

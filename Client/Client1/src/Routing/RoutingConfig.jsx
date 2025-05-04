@@ -14,6 +14,7 @@ export const RouteConfig=createBrowserRouter(createRoutesFromChildren(
         {/* Protected Routes */}
         <Route path="/products" element={<ProtectedComp child={<main.AllProductsPage/>} />} />
         <Route path="/addproduct" element={<ProtectedComp child={<main.AddNewProductPage/>} />} />
-        
+        <Route path="/profile" element={<ProtectedComp child={<main.ProfilePage/>} />} />
+        <Route path="/changepass" element={<ProtectedComp child={<main.ChangePassPage/>} />} /> 
     </Route>
 ))

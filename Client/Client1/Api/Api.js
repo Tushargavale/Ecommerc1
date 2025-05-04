@@ -90,5 +90,30 @@ export const logout=async()=>{
     }
 }
 
+export const updateAvatar=async(formdata)=>{
+    try {
+        let resp=await axiosinstance.patch('/users/avatar',formdata,{headers:{
+            'Content-Type':'multipart/form-data'
+        }})
+        console.log(resp)
+        return resp
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+
+export const changePassword=async(pass)=>{
+    try {
+        let resp=await axiosinstance.post('/users/change-password',pass)
+        console.log(resp)
+        if(!resp.status)
+            throw new Error(resp?.message || 'Something Went Wrong')
+        return resp
+    } catch (error) {
+        throw error
+    }
+}
 
 

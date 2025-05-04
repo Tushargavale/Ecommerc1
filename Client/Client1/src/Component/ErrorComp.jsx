@@ -1,7 +1,7 @@
 import React from 'react'
 import { clearError } from '../../Redux/userSlice';
 import { useDispatch } from 'react-redux';
-const ErrorComp = ({ error }) => {
+const ErrorComp = ({ error ,setError }) => {
   const dispatch=useDispatch()
   if (!error) return null;
 
@@ -12,7 +12,12 @@ const ErrorComp = ({ error }) => {
       <button
         className="absolute top-1 right-2 text-red-700 font-bold text-xl leading-none focus:outline-none"
         aria-label="Close"
-        onClick={()=>dispatch(clearError())}
+        onClick={()=>{
+          if(!setError)
+          dispatch(clearError())
+          else
+          setError("")
+        }}
       >
         &times;
       </button>

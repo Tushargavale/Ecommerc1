@@ -7,13 +7,13 @@ import SignupPage from "./SignupPage";
 import RootPage from "./RootPage";
 import ProfilePage from "./ProfilePage";
 import ChangePassPage from "./changePassPage";
+import AssignRolePage from "./AssignRolePage";
 
 
 
 
 
-
-export {HomePage,LoginPage,AboutPage,RootPage,AddNewProductPage,AllProductsPage,SignupPage,ProfilePage,ChangePassPage}
+export {HomePage,LoginPage,AboutPage,RootPage,AddNewProductPage,AllProductsPage,SignupPage,ProfilePage,ChangePassPage,AssignRolePage}
 
 
 

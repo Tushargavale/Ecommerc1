@@ -1,19 +1,37 @@
 import React,{useState,useEffect} from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-const ProtectedComp = ({child}) => {
+const ProtectedComp = ({child ,permision='USER'  }) => {
     const navigate=useNavigate()
     const [loder,setLoder]=useState(true)
-    const Auth=useSelector((state)=>state.user.Authenticated)
+    const [userpermision,setuserPermision]=useState(false)
+
+    const user=useSelector((state)=>state.user)
+    const Auth=user.Authenticated
     useEffect(()=>{
-        if(Auth)
+        if(user?.user?.role==permision)
+            setuserPermision(true)
+        else
+        if(user?.user?.role=='ADMIN')
+            setuserPermision(true)
+    },[])
+    useEffect(()=>{
+         if(Auth)
         {
-            // console.log(Auth)
-            // console.log('User is Authenticated Successfully')
-            setLoder(false)
-        }else{
-            navigate('/login')
-        }
+            if(permision==user?.user?.role)
+                setLoder(false)
+            else 
+            if(user?.user?.role=='ADMIN')
+                setLoder(false)
+            else
+            navigate('/')
+        }else
+        navigate('/login')
+
+
+
+
+        
     },[Auth])
 
   return (

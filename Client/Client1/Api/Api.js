@@ -117,3 +117,14 @@ export const changePassword=async(pass)=>{
 }
 
 
+export const AssignRoletouser=async({userId,role})=>{
+    try {
+        let resp=await axiosinstance.post(`/users/assign-role/${userId}`,{role})
+        if(resp.status)
+            return resp 
+        throw new Error('Faild to assign Role')
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}

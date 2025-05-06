@@ -15,7 +15,9 @@ const Profile = () => {
         username:user.user.username,
         email:user.user.email,
         avatar:user?.user?.avatar,
-        avatarPreview:null
+        role:user?.user?.role,
+        avatarPreview:null,
+        userID:user?.user?._id
     })
 
 
@@ -24,7 +26,9 @@ const Profile = () => {
         username:user.user.username,
         email:user.user.email,
         avatar:user?.user?.avatar,
-        avatarPreview:null
+        role:user?.user?.role,
+        avatarPreview:null,
+        userID:user?.user?._id
         })
     },[user])
 useEffect(()=>{
@@ -130,6 +134,7 @@ useEffect(()=>{
               <label className="block text-sm font-medium text-gray-700 mb-1">Username</label>
               <input
                 type="text"
+                disabled={true}
                 value={userinfo.username}
                 className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
@@ -139,10 +144,33 @@ useEffect(()=>{
               <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
               <input
                 type="email"
+                disabled={true}
                 value={userinfo.email}
                 className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
+            
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
+              <input
+                type="text"
+                disabled={true}
+                value={userinfo.role}
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+          <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 mb-1">User ID</label>
+              <input
+                type="text"
+                disabled={true}
+                value={userinfo.userID}
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+
           </div>
         </div>
 

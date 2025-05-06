@@ -96,6 +96,12 @@ const dispacth=useDispatch()
     <NavLink to="/cart" className="block px-4 py-2 hover:bg-gray-200 cursor-pointer">
       Cart
     </NavLink>
+   {user?.user?.role=='ADMIN'?<>
+    <NavLink to="/assignrole" className="block px-4 py-2 hover:bg-gray-200 cursor-pointer">
+     Assign Role 
+    </NavLink>
+   
+   </>:null} 
     <NavLink to="/logout" className="block px-4 py-2 hover:bg-gray-200 cursor-pointer">
       Logout
     </NavLink>

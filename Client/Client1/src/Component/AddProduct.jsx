@@ -63,14 +63,14 @@ return (
      
    <form
       onSubmit={handleSubmit}
-      className="max-w-5xl mx-auto p-6 bg-white rounded-2xl shadow-md space-y-6"
+      className="max-w-5xl mx-auto p-6 mt-10 mb-10 bg-white rounded-2xl shadow-md space-y-6"
     >
       <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">Add Product</h2>
 
       {/* Grid layout for responsive form */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <input className="input p-2" name="title" placeholder="Title" value={product.title} onChange={handleChange} />
-        <input className="input p-2" name="category" placeholder="Category" value={product.category} onChange={handleChange} />
+        <input className="input p-2 border" name="title" placeholder="Title" value={product.title} onChange={handleChange} />
+        <input className="input p-2 border rounded-md border-black" name="category" placeholder="Category" value={product.category} onChange={handleChange} />
         <input className="input p-2" name="price" type="number" placeholder="Price" value={product.price} onChange={handleChange} />
         <input className="input p-2" name="discountPercentage" type="number" placeholder="Discount %" value={product.discountPercentage} onChange={handleChange} />
         <input className="input p-2" name="brand" placeholder="Brand" value={product.brand} onChange={handleChange} />

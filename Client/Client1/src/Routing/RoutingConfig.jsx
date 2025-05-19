@@ -14,8 +14,12 @@ export const RouteConfig=createBrowserRouter(createRoutesFromChildren(
         {/* Protected Routes */}
         <Route path="/products" element={<ProtectedComp child={<main.AllProductsPage/>} />} />
         <Route path="/addproduct" element={<ProtectedComp child={<main.AddNewProductPage/>} />} />
-        <Route path="/profile" element={<ProtectedComp child={<main.ProfilePage/>} />} />
+        <Route path="/setting" element={<ProtectedComp child={<main.SettingPage/>} />} />
         <Route path="/changepass" element={<ProtectedComp child={<main.ChangePassPage/>} />} /> 
+        <Route path="/profile" element={<ProtectedComp child={<main.ProfilePage/>} />} />
         <Route path="/assignrole" element={<ProtectedComp child={<main.AssignRolePage/>} permision="ADMIN" />} />
+        <Route path="/addnewadd" element={<ProtectedComp child={<main.AddNewAddressPage/>} />} />
+        <Route path="/alladdress" element={<ProtectedComp child={<main.AllAddressPage/>} />} />
+        <Route path="/editaddress/:id" element={<ProtectedComp child={<main.EditAddressPage/>} />} />
     </Route>
 ))

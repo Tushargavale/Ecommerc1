@@ -8,22 +8,20 @@ const ErrorComp = ({ error ,setError }) => {
   return (
     <>
     
-     <div className="relative bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded max-w-md mx-auto mt-4">
-      <button
-        className="absolute top-1 right-2 text-red-700 font-bold text-xl leading-none focus:outline-none"
-        aria-label="Close"
-        onClick={()=>{
-          if(!setError)
-          dispatch(clearError())
-          else
-          setError("")
-        }}
-      >
-        &times;
-      </button>
-      <strong className="font-bold">Error: </strong>
-      <span className="block sm:inline">{error}</span>
-    </div>
+    <div className="fixed top-4 mt-16 left-1/2 w-1/3  transform -translate-x-1/2 bg-red-500 border text-white border-red-500 px-4 py-3 rounded max-w-md z-50 shadow-lg">
+  <button
+    className="absolute top-1 right-2 text-white font-bold text-xl leading-none focus:outline-none"
+    aria-label="Close"
+    onClick={() => {
+      if (!setError) dispatch(clearError());
+      else setError("");
+    }}
+  >
+    &times;
+  </button>
+  <strong className="font-bold">Error: </strong>
+  <span className="block sm:inline">{error}</span>
+</div>
     
     </>
   );

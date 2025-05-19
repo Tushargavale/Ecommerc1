@@ -102,9 +102,21 @@ const dispacth=useDispatch()
     </NavLink>
    
    </>:null} 
+
+     <NavLink to="/setting" className="block px-4 py-2 hover:bg-gray-200 cursor-pointer">
+     Setting 
+    </NavLink>
+
+
     <NavLink to="/logout" className="block px-4 py-2 hover:bg-gray-200 cursor-pointer">
       Logout
     </NavLink>
+
+
+
+
+
+
   </ul>
 </div>
   )}

@@ -4,20 +4,35 @@ import {addresses} from '../Constant'
 import SuccessToast from './SuccessToast'
 import ErrorComp from './ErrorComp'
 import { useNavigate } from 'react-router-dom'
+import { deleteAddress, getAddressById, updateAddress } from '../../Api/Api'
 const EditAddress = () => {
     const navigate=useNavigate()
     const [error,setError]=useState('')
     const [success,setSuccess]=useState(false)
+    const [message,setMessage]=useState('')
     const {id}=useParams()
    
     useEffect(()=>{
-        if(id)
-        {
-          let temp=addresses.find((value)=>value.id==id)
-          console.log(temp)
-          setUpdate(temp)
-        }
+      async function getAdd() {
+        let result=await getAddressById(id)
+        console.log(result.data.data)
+        setUpdate(result.data.data)
+      }
+
+      if(id)
+        getAdd()        
     },[id])
+
+
+
+    useEffect(()=>{
+      if(success)
+      {
+        setTimeout(() => {
+          navigate('/products')
+        }, 2000);
+      }
+    },[success])
    const [update,setUpdate]=useState({})
 
     const Handler=(e)=>{
@@ -27,28 +42,48 @@ const EditAddress = () => {
         setUpdate(temp)
     }
 
-    useEffect(()=>{
-        if(success)
-        {
-            setTimeout(() => {
-                navigate(-1)
-            }, 2000);
-        }
-    },[success])
+   
 
 
 
 
-    const onsubmit=()=>{
+    const onsubmit=async()=>{
+       try {
+        let resp=await updateAddress(id,update)
+        console.log(resp)
         setSuccess(true)
-       
+        setMessage('Address Updated Successfully')
+       } catch (error) {
+        console.log(error.response.data.message)
+        setError(error.response.data.message)
+       }       
     }
+
+
+    const ondelete=async()=>{
+      try {
+        let resp=await deleteAddress(id)
+        if(resp.status)
+        {
+          setSuccess(true)
+          setMessage('Address Deleted Successfully')
+        }
+        else
+        throw new Error('Not Deleted Successfully')
+      } catch (error) {
+        setError(error.response.data.message || 'Address Not Deleted Successfully'||error )
+      }
+    }
+
+
+
+
 
 
   return (
    <>
-   {error && <ErrorComp error={'Something Went Wrong'}  setError={setError}  /> }
-    {success&& <SuccessToast message={'Address Save Successfully'} setEffect={setSuccess}/>}
+   {error && <ErrorComp error={error}  setError={setError}  /> }
+    {success&& <SuccessToast message={message} setEffect={setSuccess}/>}
     {update &&  <div className="flex mx-auto p-6 w-1/2 mt-32 bg-white rounded-md shadow-md">
 
                 <div className="flex flex-col w-full mt-3 border p-4 rounded-md border-black gap-2">
@@ -76,9 +111,9 @@ const EditAddress = () => {
       />
      </div>
 
-      <div className="flex flex-row  gap-2">
+      <div className="flex flex-row w-full gap-2">
 
-         <div className="flex flex-col w-full ">
+         <div className="flex flex-col w-1/2 ">
           <label
           className="font-medium"
           >Country</label>
@@ -90,7 +125,7 @@ const EditAddress = () => {
           />
      </div>
 
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-1/2">
           <label
           className="font-medium"
           >State</label>
@@ -106,9 +141,9 @@ const EditAddress = () => {
 
     {/* City and Pincode */}
 
-       <div className="flex flex-row  gap-2">
+       <div className="flex flex-row w-full  gap-2">
 
-         <div className="flex flex-col w-full ">
+         <div className="flex flex-col w-1/2 ">
           <label
           className="font-medium"
           >City</label>
@@ -120,7 +155,7 @@ const EditAddress = () => {
           />
      </div>
 
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-1/2">
           <label
           className="font-medium"
           >Pincode</label>
@@ -139,9 +174,16 @@ const EditAddress = () => {
        <button
      className='border p-2 rounded-md  bg-green-600 text-white font-medium hover:bg-green-700'
      onClick={onsubmit}
-     >Submit</button>
+     >Update</button>
+
+     <button
+     className='border p-2 rounded-md  bg-red-600 text-white font-medium hover:bg-red-700'
+     onClick={ondelete}
+     >Delete</button>
 
   </div>
+
+  
   
 
 

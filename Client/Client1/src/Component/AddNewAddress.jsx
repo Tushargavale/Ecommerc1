@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SuccessToast from './SuccessToast'
 import ErrorComp from './ErrorComp'
-import { useLocation } from 'react-router-dom'
+import { useLocation,useNavigate } from 'react-router-dom'
+import { addAddress } from '../../Api/Api'
 const AddNewAddress = (props) => {
-   
+    const navigate=useNavigate()
     const [success,setSuccess]=useState(false)
     const [error,setError]=useState(false)
     const [address,setAddress]=useState({
@@ -24,12 +25,29 @@ const AddNewAddress = (props) => {
     }
 
     
-    const onsubmit=()=>{
-       setTimeout(() => {
-        // setSuccess(true)
-        setError(true)
-       }, 500);
+    const onsubmit=async()=>{
+      try {
+        let resp=await addAddress(address)
+        if(resp.status)
+          setSuccess(true)
+        else
+        throw new Error('Something Went Wrong')
+        
+      } catch (error) {
+        setError(error)
+      }
     }   
+
+
+    useEffect(()=>{
+      if(success)
+      {
+        setTimeout(() => {
+          navigate('/products')
+          setSuccess(false)
+        }, 2000);
+      }
+    },[success])
 
 
 

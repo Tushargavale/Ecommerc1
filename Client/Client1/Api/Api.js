@@ -128,3 +128,75 @@ export const AssignRoletouser=async({userId,role})=>{
         throw error
     }
 }
+
+
+
+export const addAddress=async(addAddress)=>{
+    try {
+        let response=await axiosinstance.post(`/ecommerce/addresses`,addAddress)
+        if(response.status)
+            return response 
+        throw new Error( 'Something Went Wrong.')
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+
+export const getAllAddress=async()=>{
+    try {
+        let resp=await axiosinstance.get('/ecommerce/addresses')
+        if(resp.status)
+            return resp.data 
+        throw new Error('Error in finding address')
+
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+export const getAddressById=async(addressId)=>{
+    try {
+        let response=await axiosinstance.get(`/ecommerce/addresses/${addressId}`)
+        console.log(response)
+        if(response.status)
+            return response 
+        else throw new Error('unknown Error')
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+
+
+export const deleteAddress=async(addressId)=>{
+    try {
+        let res=await axiosinstance.delete(`/ecommerce/addresses/${addressId}`)
+        if(res.status)
+            return res
+        else
+         throw new Error('Not Deleted')
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+
+
+export const updateAddress=async(addressId,address)=>{
+    try {
+        let resp=await axiosinstance.patch(`/ecommerce/addresses/${addressId}`,address)
+        if(resp.status)
+            return resp
+        else
+        throw new Error('Updation Failed')
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
